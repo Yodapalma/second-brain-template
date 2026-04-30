@@ -1,0 +1,13 @@
+# Données personnelles — ne jamais pusher
+wiki/
+journal/
+archive/
+projets/
+raw/
+index.md
+log.md
+
+# Système
+.DS_Store
+.obsidian/
+.claude/

@@ -1,4 +1,4 @@
-# Second Brain — Schema
+# Mon Wiki Personnel — Schema
 
 ## Ton rôle
 Tu es le mainteneur de ce wiki personnel. Tu lis les sources
@@ -28,21 +28,59 @@ Les sources peuvent être :
   (format libre : titre de la source + ce qu'il en a retenu)
 - Des réflexions brutes
 
-Sous-dossiers à adapter selon tes domaines d'intérêt :
-- [domaine-1]/
-- [domaine-2]/
-- [domaine-3]/
+Sous-dossiers :
+- islam/
+- creation/visuel/
+- creation/mode/
+- creation/digital/
+- developpement-perso/conscience/
+- developpement-perso/sante/
+- developpement-perso/organisation/
 - projets/
 - brut/ → zone de transit pour tout ce qui n'a pas de catégorie évidente.
   Claude trie et range au bon endroit lors de l'ingest.
-- reflexions/ → pensées personnelles et vie intérieure. Claude crée des
-  liens vers les pages wiki concernées mais ne résume jamais, ne reformule
-  jamais, ne modifie jamais le contenu. L'écriture est préservée telle quelle.
-  Après ingest, archivé dans archive/raw/reflexions/
+- reflexions/ → pensées personnelles et vie intérieure de Kayen.
+  Traitées comme toutes les autres sources : Claude lit, crée ou met
+  à jour les pages wiki concernées, fait les liens. L'original est
+  archivé dans archive/raw/reflexions/ tel quel.
+  IMPORTANT : le contenu de reflexions/ est le point de vue de Kayen,
+  pas une vérité absolue. Les pages wiki créées depuis une réflexion
+  doivent le refléter : "Kayen pense que...", "Pour Kayen...",
+  "Selon sa réflexion du [date]..." — jamais présenté comme un fait
+  universel.
 
 ### wiki/
 Connaissance compilée et maintenue par toi.
-Même structure de sous-dossiers que raw/.
+
+**islam/**
+Pratique, fiqh, hadiths, figures importantes, réflexions
+spirituelles, liens entre foi et quotidien
+
+**creation/visuel/**
+Illustration, photo, vidéo, montage, motion design,
+références artistiques, techniques, outils
+
+**creation/mode/**
+Direction artistique des marques, identité visuelle,
+références mode/cinéma, processus de création,
+tendances, collaborations
+
+**creation/digital/**
+Développement apps et sites, langages, frameworks,
+patterns, outils, décisions techniques.
+Le code est traité comme un médium créatif.
+
+**developpement-perso/conscience/**
+Comment l'utilisateur fonctionne, ses patterns de travail,
+ce qui l'aide ou le bloque, ses valeurs, ses raisonnements
+sur ses choix de vie
+
+**developpement-perso/sante/**
+Santé physique et mentale, énergie, sommeil, sport, alimentation
+
+**developpement-perso/organisation/**
+Méthodes de travail, routines, systèmes, productivité,
+gestion du temps
 
 **_liens/**
 Pages qui connectent plusieurs domaines. Créer une page ici
@@ -56,7 +94,13 @@ Un sous-dossier par projet actif. Chaque projet contient :
 - ressources.md → références utiles pour ce projet
 - log.md → historique chronologique des avancées
 
+Projets actifs : palma/, sine/, kreol-youth/, resto-app/, site-personnel/
+
 ### journal/
+Le journal est écrit par Kayen, à la première personne, sur sa propre vie.
+Ce n'est pas un rapport objectif — c'est son vécu, son ressenti, son point
+de vue. Respecter cette voix dans toutes les opérations qui touchent au journal.
+
 **quotidien/** → un fichier par jour : YYYY/MM/YYYY-MM-DD.md
 Contenu : ce qui a été fait, ressenti, ce qui avance, ce qui bloque
 
@@ -65,24 +109,24 @@ Contenu : ce qui a été produit, livré, sorti, appris
 
 Structure de navigation :
 - Chaque entrée quotidienne se termine par une section "Liens" contenant :
-  1. Un lien vers sa page mois : [[journal/quotidien/YYYY/MM]]
+  1. Un lien vers sa page mois : [[journal/quotidien/YYYY/YYYY-MM]]
   2. Des liens vers toutes les pages wiki ou projets mentionnés dans l'entrée
-- Chaque page mois (YYYY/MM.md) embarque toutes ses entrées avec ![[]]
-  et est elle-même embarquée dans la page année
-- Chaque page année (YYYY.md) embarque les 12 mois avec ![[]]
+- Chaque page mois est nommée YYYY-MM.md (ex: 2026-04.md) pour rester
+  lisible sur plusieurs années. Elle embarque toutes ses entrées avec ![[]]
+- Chaque page année (YYYY.md) n'embarque que les mois qui existent réellement.
+  Ne jamais créer d'embed pour un mois sans contenu — ça crée des nœuds
+  fantômes dans le graph view.
 - Quand Claude crée une nouvelle entrée :
   1. Il crée le fichier YYYY/MM/YYYY-MM-DD.md
-  2. Il ajoute l'embed dans la page mois YYYY/MM.md (la crée si elle n'existe pas)
-  3. Il vérifie que la page année YYYY.md existe (la crée si elle n'existe pas)
+  2. Il ajoute l'embed dans la page mois YYYY/YYYY-MM.md (la crée si elle n'existe pas)
+  3. Il ajoute l'embed du mois dans YYYY.md si ce mois n'y est pas encore
 
 ### archive/
 Zone de stockage pour ce qui est traité ou terminé.
 Jamais modifié, jamais supprimé — on archive, on n'efface pas.
-Les sous-dossiers reflètent la même structure que le vault.
-Ex : raw/brut/fichier.md → archive/raw/brut/fichier.md
 
-Le dossier archive/ est UNIQUE et se trouve uniquement à la racine
-du vault. Ne jamais créer de dossier "archive" ailleurs.
+**archive/raw/** → fichiers raw/ déjà ingérés
+**archive/projets/** → projets terminés ou mis en pause
 
 ---
 
@@ -100,6 +144,7 @@ Quand l'utilisateur dit "ingest [fichier]" ou "ingest raw/" :
 8. Logger dans log.md : date + source + pages créées/modifiées
 9. Déplacer le fichier source vers archive/ en conservant
    le même chemin relatif. Ex: raw/brut/fichier.md → archive/raw/brut/fichier.md
+
 
 Format d'une page wiki :
 ---
@@ -120,9 +165,6 @@ Format d'une page wiki :
 ## Questions ouvertes
 [Ce qui reste flou ou à creuser]
 
-## Sources
-[D'où vient cette info]
-
 ## Liens connexes
 [Backlinks vers autres pages]
 ---
@@ -137,10 +179,22 @@ Quand l'utilisateur pose une question :
 
 ### JOURNAL
 Quand l'utilisateur dit "journal" ou "log aujourd'hui" :
-1. Créer/ouvrir journal/quotidien/YYYY/MM/YYYY-MM-DD.md
-2. Ajouter l'entrée
-3. Si une avancée concerne un projet → màj projets/[projet]/log.md
-4. Màj la page mois et la page année
+
+**Même jour que la dernière entrée :**
+1. Ouvrir la note du jour existante
+2. Ajouter l'entrée sans créer un nouveau fichier
+
+**Plusieurs jours sans journal :**
+1. Vérifier la date de la dernière entrée dans journal/quotidien/
+2. Pour chaque jour manquant entre cette date et aujourd'hui :
+   - Créer une note YYYY/MM/YYYY-MM-DD.md
+   - Aller chercher dans log.md, projets/*/log.md et les fichiers
+     ingérés sur cette période ce qui s'est passé ce jour-là
+   - Remplir la note avec ce qui a été trouvé, en précisant
+     que c'est une reconstruction a posteriori
+   - Mettre à jour la page mois et année
+3. Créer la note du jour actuel avec ce que Kayen dicte
+4. Si une avancée concerne un projet → màj projets/[projet]/log.md
 
 Quand l'utilisateur dit "bilan [projet]" :
 1. Lire projets/[projet]/log.md
@@ -167,14 +221,32 @@ Quand l'utilisateur dit "archive [projet]" :
 - Toujours penser aux backlinks. Une page sans lien = info perdue
 - Prioriser le concret. "Ce que ça change concrètement" toujours rempli
 - Citer directement si la formulation originale est importante
-- Respecter la voix de l'utilisateur dans le journal et les réflexions
+- Respecter la voix de l'utilisateur dans le journal
 - Sources vidéo/audio : traiter les notes personnelles comme la source
 - Chaque page créée inclut sa date de création
 - À chaque mise à jour, mettre à jour "Mis à jour le"
 - On n'efface jamais — on archive
+- Le dossier archive/ est UNIQUE et se trouve uniquement à la racine du vault. Ne jamais créer de dossier "archive" ailleurs dans le vault (pas dans raw/, pas dans wiki/, nulle part). Tout ce qui est archivé va dans archive/ à la racine, avec des sous-dossiers qui reflètent la même structure que le vault.
+
+
+## Profil de Kayen
+`wiki/developpement-perso/profil.md` est un portrait vivant de Kayen,
+construit et affiné progressivement par le LLM.
+
+Règles :
+- Après chaque ingest de `raw/reflexions/` ou toute entrée de journal
+  qui révèle quelque chose de nouveau sur Kayen (une tension, une théorie,
+  une évolution), mettre à jour cette page
+- L'architecture de la page elle-même évolue : si un nouveau thème central
+  émerge, créer une section. Si un thème s'efface, le déplacer dans une
+  section "Périodes passées"
+- Chaque évolution notable est horodatée dans le tableau "Ce qui évolue"
+- Ne jamais présenter le profil comme définitif — c'est une photo à un instant T
+- Ne pas ajouter d'éléments non fondés sur des sources réelles du vault
 
 ## Évolution de la structure
 Si tu identifies qu'un nouveau regroupement de thèmes émerge
 (minimum 3 sources sur un même sujet non couvert par les
 dossiers existants), propose à l'utilisateur de créer un
 nouveau dossier. Ne le crée pas sans validation.
+2026-04-16d
