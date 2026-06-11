@@ -1,4 +1,4 @@
-# Mon Wiki Personnel — Schema
+# Second Brain — Schema
 
 ## Ton rôle
 Tu es le mainteneur de ce wiki personnel. Tu lis les sources
@@ -28,60 +28,39 @@ Les sources peuvent être :
   (format libre : titre de la source + ce qu'il en a retenu)
 - Des réflexions brutes
 
-Sous-dossiers :
-- islam/
-- creation/visuel/
-- creation/mode/
-- creation/digital/
-- developpement-perso/conscience/
-- developpement-perso/sante/
-- developpement-perso/organisation/
-- projets/
+Sous-dossiers : à définir selon tes domaines d'intérêt.
+
+Dossiers spéciaux :
 - brut/ → zone de transit pour tout ce qui n'a pas de catégorie évidente.
   Lors de l'ingest, Claude identifie le bon dossier wiki/ pour le contenu.
   Le fichier raw est archivé à son chemin d'origine : raw/brut/fichier.md → archive/raw/brut/fichier.md
-- reflexions/ → pensées personnelles et vie intérieure de Kayen.
+- reflexions/ → pensées personnelles et vie intérieure de l'utilisateur.
   Traitées comme toutes les autres sources : Claude lit, crée ou met
   à jour les pages wiki concernées, fait les liens. L'original est
   archivé dans archive/raw/reflexions/ tel quel.
-  IMPORTANT : le contenu de reflexions/ est le point de vue de Kayen,
+  IMPORTANT : le contenu de reflexions/ est le point de vue de l'utilisateur,
   pas une vérité absolue. Les pages wiki créées depuis une réflexion
-  doivent le refléter : "Kayen pense que...", "Pour Kayen...",
-  "Selon sa réflexion du [date]..." — jamais présenté comme un fait
+  doivent le refléter : "Tu penses que...", "Pour toi...",
+  "Selon ta réflexion du [date]..." — jamais présenté comme un fait
   universel.
 
 ### wiki/
 Connaissance compilée et maintenue par toi.
 
-**islam/**
-Pratique, fiqh, hadiths, figures importantes, réflexions
-spirituelles, liens entre foi et quotidien
+Organise les sous-dossiers selon tes domaines d'intérêt personnels.
+Exemple de structure possible :
 
-**creation/visuel/**
-Illustration, photo, vidéo, montage, motion design,
-références artistiques, techniques, outils
-
-**creation/mode/**
-Direction artistique des marques, identité visuelle,
-références mode/cinéma, processus de création,
-tendances, collaborations
-
-**creation/digital/**
-Développement apps et sites, langages, frameworks,
-patterns, outils, décisions techniques.
-Le code est traité comme un médium créatif.
-
-**developpement-perso/conscience/**
-Comment l'utilisateur fonctionne, ses patterns de travail,
-ce qui l'aide ou le bloque, ses valeurs, ses raisonnements
-sur ses choix de vie
-
-**developpement-perso/sante/**
-Santé physique et mentale, énergie, sommeil, sport, alimentation
-
-**developpement-perso/organisation/**
-Méthodes de travail, routines, systèmes, productivité,
-gestion du temps
+```
+wiki/
+  domaine-1/
+  domaine-2/
+    sous-domaine/
+  developpement-perso/
+    conscience/
+    sante/
+    organisation/
+  _liens/
+```
 
 **_liens/**
 Pages qui connectent plusieurs domaines. Créer une page ici
@@ -95,10 +74,8 @@ Un sous-dossier par projet actif. Chaque projet contient :
 - ressources.md → références utiles pour ce projet
 - log.md → historique chronologique des avancées
 
-Projets actifs : palma/, sine/, kreol-youth/, resto-app/, site-personnel/
-
 ### journal/
-Le journal est écrit par Kayen, à la première personne, sur sa propre vie.
+Le journal est écrit par l'utilisateur, à la première personne, sur sa propre vie.
 Ce n'est pas un rapport objectif — c'est son vécu, son ressenti, son point
 de vue. Respecter cette voix dans toutes les opérations qui touchent au journal.
 
@@ -142,8 +119,6 @@ journal/
 - [[YYYY-MM-DD]] — une phrase par jour
 
 → [[reflexions/semaine-XX-YYYY]]    ← si une source raw/reflexions/ a été ingérée pour cette semaine
-                                      (les fichiers reflexions hebdo sont nommés semaine-XX-YYYY.md
-                                       dans raw/reflexions/ puis archive/raw/reflexions/ après ingest)
 ```
 
 **mois/YYYY.MM mois.md** → bilan du mois (pas de section Liens — backlinks Obsidian suffisent)
@@ -157,9 +132,6 @@ journal/
 ## Semaines et jours
 - [[sXX (lunJJ-dimJJ)]] — une phrase par semaine
   - [[YYYY-MM-DD]]: une phrase par jour
-  - [[YYYY-MM-DD]]: une phrase par jour
-- [[sXX (lunJJ-dimJJ)]] — une phrase
-  - [[YYYY-MM-DD]]: une phrase
 ```
 
 **années/YYYY.md** → bilan de l'année
@@ -207,7 +179,7 @@ Quand l'utilisateur dit "ingest [fichier]" ou "ingest raw/" :
      Exception : pages `_liens/` créées par convergence de plusieurs sources sans source principale → date d'ingest acceptable.
 5. Si l'idée touche plusieurs domaines → créer/màj _liens/
 6. Si la source concerne un projet actif → màj projets/[projet]/
-7. Si la source révèle quelque chose de nouveau sur Kayen (tension, évolution, théorie) → màj `wiki/developpement-perso/profil.md`
+7. Si la source révèle quelque chose de nouveau sur l'utilisateur (tension, évolution, théorie) → màj `wiki/developpement-perso/profil.md`
 8. Ajouter à index.md
 9. Logger dans log.md : date + source + pages créées/modifiées
 10. Déplacer le fichier source vers archive/ en conservant
@@ -217,7 +189,7 @@ Quand l'utilisateur dit "ingest [fichier]" ou "ingest raw/" :
 Format exact d'une page wiki (ne pas ajouter de frontmatter YAML — la page commence directement par le titre) :
 
 **Principes de densité — non négociables :**
-- Une page wiki = remplacement de la source. Kayen ne doit plus avoir besoin de revoir la source pour retrouver l'essentiel.
+- Une page wiki = remplacement de la source. L'utilisateur ne doit plus avoir besoin de revoir la source pour retrouver l'essentiel.
 - Pour une source longue (vidéo 20+ min, article dense) : capturer TOUS les points importants, pas juste les grandes idées.
 - Les exemples concrets de la source (anecdotes, cas réels, chiffres précis, séquences narratives) sont OBLIGATOIRES — c'est ce qui rend l'idée mémorable et ancrable. Ne jamais supprimer un exemple fort pour "alléger" la page.
 - Les citations directes : si une formulation originale est particulièrement percutante ou irremplaçable, la citer mot pour mot en italique. Ne pas reformuler si la phrase originale dit mieux.
@@ -247,23 +219,22 @@ Format exact d'une page wiki (ne pas ajouter de frontmatter YAML — la page com
 *(Règles pour les sections `###` :*
 *— Utiliser `###` pour chaque sous-section, jamais du `**gras**` à la place du titre. Minimum 2, pas de maximum.*
 *— Chaque paragraphe dans une `###` commence par une **phrase en gras** qui résume son idée centrale. Format : `**Idée principale.**` suivi de la prose. C'est le pattern par défaut — il permet de survoler la page comme un document structuré.*
-*— Exception : sections dont le contenu est intrinsèquement tabulaire ou listé (formules, tableaux, listes techniques pure) — là le bold inline n'apporte rien, la structure visuelle suffit.*
+*— Exception : sections dont le contenu est intrinsèquement tabulaire ou listé (formules, tableaux, listes techniques pures) — là le bold inline n'apporte rien, la structure visuelle suffit.*
 *— Nombre de sous-sections = nombre d'idées importantes dans la source.)*
 
 ## Ce que ça change concrètement
 [Application pratique, pas juste théorique]
 
-## Pour Kayen
+## Pour [Prénom]
 
-[Un paragraphe qui relie directement le sujet à la situation de Kayen :
-ses projets (Palma, Sine, génie civil, islam, multipotentialité),
-son contexte créatif, ses blocages ou leviers actuels.
+[Un paragraphe qui relie directement le sujet à la situation de l'utilisateur :
+ses projets, son contexte, ses blocages ou leviers actuels.
 S'alimente des notes perso présentes dans le raw quand il y en a.
-Jamais générique — toujours ancré dans ce qu'on sait de lui et de ses projets actuels.]
+Jamais générique — toujours ancré dans ce qu'on sait de lui et de ses projets.]
 
 **Actions :**
-- [geste précis ancré dans ses projets — "pour Palma, teste X cette semaine"]
-- [pas de généralités — toujours ancré dans ce qu'on sait de lui]
+- [geste précis ancré dans ses projets]
+- [pas de généralités]
 
 ## Questions ouvertes
 [Ce qui reste flou ou à creuser]
@@ -272,12 +243,6 @@ Jamais générique — toujours ancré dans ce qu'on sait de lui et de ses proje
 *(Chaque source = 1 ligne titre + 1 ligne wikilink, en paire immédiate. Plusieurs sources = plusieurs paires.)*
 - *[Titre exact de la source]* — [Auteur] ([type précis : "vidéo YouTube" / "article" / "podcast"], [date YYYY-MM-DD])
 - [[🖥️ yt - nom exact du fichier raw archivé sans extension]]
-
-Exemple pour 2 sources YouTube :
-- *Comment Pharrell s'est emparé de LV* — HYCONIQ (vidéo YouTube, 2026-06-01)
-- [[🖥️ yt - Comment Pharrell Williams s'est emparé de Louis Vuitton...]]
-- *Le prix à payer pour être Pharrell* — Chance Dubinick (vidéo YouTube, 2026-06-01)
-- [[🖥️ yt - Le prix à payer pour être Pharrell]]
 
 ## Liens connexes
 - [[chemin/page]] *(explication du lien en italique — pourquoi ces deux pages se parlent)*
@@ -311,7 +276,7 @@ Quand l'utilisateur dit "journal" ou "log aujourd'hui" :
    - Aller chercher dans log.md ce qui s'est passé ce jour-là
    - Marquer "Reconstruction a posteriori — [date du journal]"
    - Appliquer la règle systématique (pages wiki du jour)
-3. Créer la note du jour actuel avec ce que Kayen dicte
+3. Créer la note du jour actuel avec ce que l'utilisateur dicte
 4. Appliquer la règle systématique
 5. Si avancée projet → màj `projets/[projet]/log.md`
 
@@ -358,7 +323,6 @@ Quand l'utilisateur dit "archive [projet]" :
 ---
 
 ## Règles générales
-- Pour toute page `wiki/islam/` : sourcer systématiquement les informations islamiques avec la référence précise — numéro de sourate et verset pour le Coran (ex : Al-Hadid 57:20), livre + numéro de hadith + rapporteur pour les hadiths (ex : Bukhari 6416, rapporté par Ibn 'Umar). Si la source ne donne pas la référence, l'identifier par la connaissance islamique disponible. Ne jamais citer un verset ou un hadith sans sa référence.
 - Toujours penser aux backlinks. Une page sans lien = info perdue
 - Prioriser le concret. "Ce que ça change concrètement" toujours rempli
 - Citer directement si la formulation originale est importante
@@ -369,14 +333,13 @@ Quand l'utilisateur dit "archive [projet]" :
 - On n'efface jamais — on archive
 - Le dossier archive/ est UNIQUE et se trouve uniquement à la racine du vault. Ne jamais créer de dossier "archive" ailleurs dans le vault (pas dans raw/, pas dans wiki/, nulle part). Tout ce qui est archivé va dans archive/ à la racine, avec des sous-dossiers qui reflètent la même structure que le vault.
 
-
-## Profil de Kayen
-`wiki/developpement-perso/profil.md` est un portrait vivant de Kayen,
+## Profil de l'utilisateur
+`wiki/developpement-perso/profil.md` est un portrait vivant de l'utilisateur,
 construit et affiné progressivement par le LLM.
 
 Règles :
 - Après chaque ingest de `raw/reflexions/` ou toute entrée de journal
-  qui révèle quelque chose de nouveau sur Kayen (une tension, une théorie,
+  qui révèle quelque chose de nouveau sur l'utilisateur (une tension, une théorie,
   une évolution), mettre à jour cette page
 - L'architecture de la page elle-même évolue : si un nouveau thème central
   émerge, créer une section. Si un thème s'efface, le déplacer dans une
@@ -390,4 +353,3 @@ Si tu identifies qu'un nouveau regroupement de thèmes émerge
 (minimum 3 sources sur un même sujet non couvert par les
 dossiers existants), propose à l'utilisateur de créer un
 nouveau dossier. Ne le crée pas sans validation.
-2026-04-16d
